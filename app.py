@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request, HTTPException
-
+from fastapi.middleware.cors import CORSMiddleware
 from opentelemetry.proto.collector.logs.v1.logs_service_pb2 import (
     ExportLogsServiceRequest
 )
@@ -15,7 +15,13 @@ from db import get_connection
 
 app = FastAPI()
 
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # ============================================================
 # HELPERS
 # ============================================================
@@ -132,6 +138,8 @@ async def logs(request: Request):
     data = ExportLogsServiceRequest()
     data.ParseFromString(body)
 
+    print("\n========== LOGS ==========")
+
     with get_connection() as conn:
 
         with conn.cursor() as cur:
@@ -148,6 +156,9 @@ async def logs(request: Request):
                         event = record.body.string_value
 
                         attrs = get_attributes(record)
+
+                        print("\nEVENT:", event)
+                        print("ATTRS:", attrs)
 
                         user_identifier = (
                             attrs.get("user.email")

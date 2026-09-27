@@ -1,0 +1,95 @@
+INFO:     Will watch for changes in these directories: ['C:\\Users\\SarthakMohapatra\\Desktop\\sarthak_dev_code\\loggging_claude']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [25684] using WatchFiles
+INFO:     Started server process [23808]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:56021 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56021 - "GET /openapi.json HTTP/1.1" 200 OK
+
+========== LOGS ==========
+INFO:     127.0.0.1:57694 - "POST /v1/logs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51861 - "GET /api/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61863 - "GET /api/dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51955 - "GET /api/dashboard/tokens HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56569 - "GET /api/dashboard/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50522 - "GET /api/dashboard/cost HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49352 - "GET /api/dashboard/users HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51861 - "GET /api/dashboard/activity HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51955 - "GET /api/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56569 - "GET /api/dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50522 - "GET /api/dashboard/tokens HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61863 - "GET /api/dashboard/performance HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49352 - "GET /api/dashboard/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51955 - "GET /api/dashboard/users HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56569 - "GET /api/dashboard/activity HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51861 - "GET /api/dashboard/cost HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61863 - "GET /api/dashboard/performance HTTP/1.1" 200 OK
+
+========== LOGS ==========
+INFO:     127.0.0.1:50401 - "POST /v1/logs HTTP/1.1" 200 OK
+
+========== METRICS ==========
+INFO:     127.0.0.1:50421 - "POST /v1/metrics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51123 - "GET /api/dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64447 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:64448 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59805 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59810 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59221 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59222 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59231 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51391 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:56169 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:56168 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58765 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58770 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59700 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59701 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59706 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:52831 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:52832 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:52835 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:52837 - "GET /api/dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65088 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:65089 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:65090 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:65091 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:65092 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:64128 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:64130 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:64131 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:64133 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:64134 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:64135 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:64136 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:64144 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:64145 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:64146 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57259 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:54465 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54465 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63610 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:63611 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49772 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49774 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49775 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49776 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49778 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49791 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49792 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49793 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49794 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49796 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49797 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50833 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50845 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:53498 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49673 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58091 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58091 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58094 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58116 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58135 - "POST /v1/metrics/v1/metrics HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58116 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58150 - "POST /v1/logs/v1/logs HTTP/1.1" 404 Not Found
