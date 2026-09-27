@@ -15,13 +15,13 @@ export default function ModelTable({ data }) {
                 </thead>
 
                 <tbody>
-                    {data.map((row) => (
-                        <tr key={row.model}>
-                            <td>{row.model}</td>
+                    {data.map((row, index) => (
+                        <tr key={row.model || index}>
+                            <td>{row.model || "-"}</td>
                             <td>{row.requests}</td>
-                            <td>{row.total_tokens?.toLocaleString()}</td>
-                            <td>${Number(row.cost_usd || 0).toFixed(4)}</td>
-                            <td>{Number(row.avg_duration_ms || 0).toFixed(0)} ms</td>
+                            <td>{row.tokens?.toLocaleString()}</td>
+                            <td>${Number(row.cost || 0).toFixed(4)}</td>
+                            <td>{Number(row.avg_latency_ms || 0).toFixed(0)} ms</td>
                         </tr>
                     ))}
                 </tbody>

@@ -552,6 +552,45 @@ async def get_project(project_id: int):
     }
 
 
+@app.delete("/api/projects/{project_id}")
+async def delete_project(project_id: int):
+
+    with get_connection() as conn:
+
+        with conn.cursor() as cur:
+
+            cur.execute(
+                """
+                UPDATE sessions
+                SET project_id = NULL
+                WHERE project_id = %s;
+                """,
+                (project_id,)
+            )
+
+            cur.execute(
+                """
+                DELETE FROM projects
+                WHERE id = %s
+                RETURNING id;
+                """,
+                (project_id,)
+            )
+
+            row = cur.fetchone()
+
+        conn.commit()
+
+    if not row:
+
+        raise HTTPException(
+            status_code=404,
+            detail="Project not found"
+        )
+
+    return {"id": row[0]}
+
+
 # ============================================================
 # ASSIGN SESSION TO PROJECT
 # ============================================================
@@ -945,6 +984,7 @@ async def session_usage():
                     u.user_identifier,
                     s.started_at,
                     s.last_activity_at,
+                    s.project_id,
                     COUNT(a.id) AS requests,
                     COALESCE(SUM(a.total_tokens), 0) AS tokens,
                     COALESCE(SUM(a.cost_usd), 0) AS cost
@@ -957,7 +997,8 @@ async def session_usage():
                     s.session_id,
                     u.user_identifier,
                     s.started_at,
-                    s.last_activity_at
+                    s.last_activity_at,
+                    s.project_id
                 ORDER BY s.last_activity_at DESC;
                 """
             )
@@ -970,9 +1011,10 @@ async def session_usage():
             "user": row[1],
             "started_at": row[2],
             "last_activity_at": row[3],
-            "requests": int(row[4]),
-            "tokens": int(row[5]),
-            "cost": float(row[6])
+            "project_id": row[4],
+            "requests": int(row[5]),
+            "tokens": int(row[6]),
+            "cost": float(row[7])
         }
         for row in rows
     ]

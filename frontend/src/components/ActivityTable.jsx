@@ -26,7 +26,7 @@ export default function ActivityTable({ data }) {
                             <td>{row.model || "-"}</td>
                             <td>{row.effort || "-"}</td>
                             <td>{row.total_tokens?.toLocaleString()}</td>
-                            <td>${Number(row.cost_usd || 0).toFixed(4)}</td>
+                            <td>${Number(row.cost || 0).toFixed(4)}</td>
                             <td>{Number(row.duration_ms || 0).toFixed(0)} ms</td>
                         </tr>
                     ))}

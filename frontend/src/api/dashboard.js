@@ -1,7 +1,7 @@
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
-async function request(path) {
-    const response = await fetch(`${API_BASE}${path}`);
+async function request(path, options) {
+    const response = await fetch(`${API_BASE}${path}`, options);
 
     if (!response.ok) {
         throw new Error(`API error: ${response.status}`);
@@ -12,6 +12,36 @@ async function request(path) {
 
 export async function getProjects() {
     return request("/api/projects");
+}
+
+export async function createProject(name, description) {
+    return request("/api/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, description }),
+    });
+}
+
+export async function deleteProject(projectId) {
+    return request(`/api/projects/${projectId}`, { method: "DELETE" });
+}
+
+export async function getDashboardSessions() {
+    return request("/api/dashboard/sessions");
+}
+
+export async function assignSessionToProject(sessionId, projectId) {
+    return request(`/api/sessions/${sessionId}/project`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ project_id: projectId }),
+    });
+}
+
+export async function unassignSessionFromProject(sessionId) {
+    return request(`/api/sessions/${sessionId}/project`, {
+        method: "DELETE",
+    });
 }
 
 export async function getDashboardSummary() {

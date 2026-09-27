@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import MetricCard from "../components/MetricCard";
 import TokenChart from "../components/TokenChart";
@@ -7,6 +7,7 @@ import ModelTable from "../components/ModelTable";
 import UserTable from "../components/UserTable";
 import ActivityTable from "../components/ActivityTable";
 import Performance from "../components/Performance";
+import ProjectManager from "../components/ProjectManager";
 
 import {
     getProjects,
@@ -17,6 +18,7 @@ import {
     getDashboardUsers,
     getDashboardActivity,
     getDashboardPerformance,
+    getDashboardSessions,
     getProjectSummary,
     getProjectTokens,
     getProjectCost,
@@ -45,13 +47,25 @@ export default function Dashboard() {
     const [users, setUsers] = useState([]);
     const [activity, setActivity] = useState([]);
     const [performance, setPerformance] = useState(null);
+    const [sessions, setSessions] = useState([]);
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const requestIdRef = useRef(0);
+
     useEffect(() => {
         loadProjects();
     }, []);
+
+    useEffect(() => {
+        if (
+            selectedProject !== "all" &&
+            !projects.some((project) => project.id === Number(selectedProject))
+        ) {
+            setSelectedProject("all");
+        }
+    }, [projects, selectedProject]);
 
     useEffect(() => {
         loadDashboard();
@@ -59,14 +73,20 @@ export default function Dashboard() {
 
     async function loadProjects() {
         try {
-            const data = await getProjects();
-            setProjects(data);
+            const [projectData, sessionData] = await Promise.all([
+                getProjects(),
+                getDashboardSessions(),
+            ]);
+            setProjects(projectData);
+            setSessions(sessionData);
         } catch (err) {
             console.error(err);
         }
     }
 
     async function loadDashboard() {
+        const requestId = ++requestIdRef.current;
+
         try {
             setLoading(true);
             setError(null);
@@ -97,6 +117,10 @@ export default function Dashboard() {
                 ]);
             }
 
+            if (requestId !== requestIdRef.current) {
+                return;
+            }
+
             setSummary(results[0]);
             setTokens(results[1]);
             setCost(results[2]);
@@ -105,10 +129,16 @@ export default function Dashboard() {
             setActivity(results[5]);
             setPerformance(results[6]);
         } catch (err) {
+            if (requestId !== requestIdRef.current) {
+                return;
+            }
+
             console.error(err);
             setError(err.message);
         } finally {
-            setLoading(false);
+            if (requestId === requestIdRef.current) {
+                setLoading(false);
+            }
         }
     }
 
@@ -159,6 +189,12 @@ export default function Dashboard() {
                     {error}
                 </div>
             )}
+
+            <ProjectManager
+                projects={projects}
+                sessions={sessions}
+                onChange={loadProjects}
+            />
 
             {summary && (
                 <>

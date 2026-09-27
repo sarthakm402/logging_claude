@@ -15,12 +15,12 @@ export default function UserTable({ data }) {
                 </thead>
 
                 <tbody>
-                    {data.map((row) => (
-                        <tr key={row.user_identifier}>
-                            <td>{row.user_identifier}</td>
+                    {data.map((row, index) => (
+                        <tr key={row.user || index}>
+                            <td>{row.user || "-"}</td>
                             <td>{row.requests}</td>
-                            <td>{row.total_tokens?.toLocaleString()}</td>
-                            <td>${Number(row.cost_usd || 0).toFixed(4)}</td>
+                            <td>{row.tokens?.toLocaleString()}</td>
+                            <td>${Number(row.cost || 0).toFixed(4)}</td>
                             <td>{row.sessions}</td>
                         </tr>
                     ))}
