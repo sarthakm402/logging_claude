@@ -11,6 +11,14 @@ function shortId(id) {
     return id ? `${id.slice(0, 8)}…` : "-";
 }
 
+function shortPrompt(text) {
+    if (!text) {
+        return "-";
+    }
+
+    return text.length > 60 ? `${text.slice(0, 60)}…` : text;
+}
+
 export default function ProjectManager({ projects, sessions, onChange }) {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -138,6 +146,8 @@ export default function ProjectManager({ projects, sessions, onChange }) {
                     <tr>
                         <th>Session</th>
                         <th>User</th>
+                        <th>First Prompt</th>
+                        <th>Started</th>
                         <th>Last Activity</th>
                         <th>Project</th>
                     </tr>
@@ -150,6 +160,14 @@ export default function ProjectManager({ projects, sessions, onChange }) {
                                 {shortId(session.session_id)}
                             </td>
                             <td>{session.user || "-"}</td>
+                            <td title={session.first_prompt || ""}>
+                                {shortPrompt(session.first_prompt)}
+                            </td>
+                            <td>
+                                {new Date(
+                                    session.started_at
+                                ).toLocaleString()}
+                            </td>
                             <td>
                                 {new Date(
                                     session.last_activity_at
