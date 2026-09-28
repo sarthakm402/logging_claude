@@ -987,7 +987,14 @@ async def session_usage():
                     s.project_id,
                     COUNT(a.id) AS requests,
                     COALESCE(SUM(a.total_tokens), 0) AS tokens,
-                    COALESCE(SUM(a.cost_usd), 0) AS cost
+                    COALESCE(SUM(a.cost_usd), 0) AS cost,
+                    (
+                        SELECT pr.prompt
+                        FROM prompts pr
+                        WHERE pr.session_id = s.session_id
+                        ORDER BY pr.timestamp ASC
+                        LIMIT 1
+                    ) AS first_prompt
                 FROM sessions s
                 LEFT JOIN users u
                     ON s.user_id = u.id
@@ -1014,7 +1021,8 @@ async def session_usage():
             "project_id": row[4],
             "requests": int(row[5]),
             "tokens": int(row[6]),
-            "cost": float(row[7])
+            "cost": float(row[7]),
+            "first_prompt": row[8]
         }
         for row in rows
     ]
