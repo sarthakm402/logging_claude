@@ -1,0 +1,55 @@
+services:
+ postgres:
+  image: postgres:latest
+  container_name: claude_postgres
+  environment:
+    POSTGRES_USER: claude
+    POSTGRES_PASSWORD: claude123
+    POSTGRES_DB: claude_usage
+  ports:
+    - "5432:5432"
+  volumes:
+    - pgdata:/var/lib/postgresql/data
+  healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U claude -d claude_usage"]
+      interval: 20s
+      timeout: 3s
+      retries: 5
+ otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: otel-collector
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+      - ./otel-logs:/var/log/otel
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    ports:
+      - "4317:4317"             
+      - "4318:4318"             
+    depends_on:
+      - backend    
+ backend:
+   build: .
+   container_name: claude-backend
+   environment:
+      POSTGRES_HOST: postgres   # service name, NOT localhost — Compose's internal DNS resolves this
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: claude_usage
+      POSTGRES_USER: claude
+      POSTGRES_PASSWORD: claude123
+   ports:
+      - "8000:8000"
+   depends_on:
+      postgres:
+        condition: service_healthy    
+ frontend:
+    build: ./frontend
+    container_name: claude-frontend
+    environment:
+      VITE_API_URL: http://localhost:8000   # browser-side JS, so it needs a host-reachable URL, not "backend"
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend         
+volumes:
+  pgdata:
+  
